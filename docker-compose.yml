@@ -1,0 +1,205 @@
+version: "3"
+
+services:
+  openresty:
+    container_name: openresty
+    image: openresty/openresty:alpine
+    ports:
+      - 8080:80
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+      - ./html:/usr/local/openresty/nginx/html
+    networks: 
+      vpn:
+        ipv4_address: 172.168.22.99
+
+  opengrok_aosp_sdk21:
+    container_name: opengrok_aosp_sdk21
+    image: opengrok/docker:latest
+    environment:
+      SYNC_PERIOD_MINUTES: '0'
+      URL_ROOT: '/android-5.0.0_r1'
+    volumes:
+       - '/data/aospxref/src/android-5.0.0_r1:/opengrok/src/'
+       - '/data/aospxref/etc/android-5.0.0_r1:/opengrok/etc/'
+       - '/data/aospxref/data/android-5.0.0_r1:/opengrok/data/'
+    networks: 
+      vpn:
+        ipv4_address: 172.168.22.121
+
+  opengrok_aosp_sdk22:
+    container_name: opengrok_aosp_sdk22
+    image: opengrok/docker:latest
+    environment:
+      SYNC_PERIOD_MINUTES: '0'
+      URL_ROOT: '/android-5.1.0_r1'
+    volumes:
+       - '/data/aospxref/src/android-5.1.0_r1:/opengrok/src/'
+       - '/data/aospxref/etc/android-5.1.0_r1:/opengrok/etc/'
+       - '/data/aospxref/data/android-5.1.0_r1:/opengrok/data/'
+    networks: 
+      vpn:
+        ipv4_address: 172.168.22.122
+
+  opengrok_aosp_sdk23:
+    container_name: opengrok_aosp_sdk23
+    image: opengrok/docker:latest
+    environment:
+      SYNC_PERIOD_MINUTES: '0'
+      URL_ROOT: '/android-6.0.0_r1'
+    volumes:
+       - '/data/aospxref/src/android-6.0.0_r1:/opengrok/src/'
+       - '/data/aospxref/etc/android-6.0.0_r1:/opengrok/etc/'
+       - '/data/aospxref/data/android-6.0.0_r1:/opengrok/data/'
+    networks: 
+      vpn:
+        ipv4_address: 172.168.22.123
+
+  opengrok_aosp_sdk24:
+    container_name: opengrok_aosp_sdk24
+    image: opengrok/docker:latest
+    environment:
+      SYNC_PERIOD_MINUTES: '0'
+      URL_ROOT: '/android-7.0.0_r1'
+    volumes:
+       - '/data/aospxref/src/android-7.0.0_r1:/opengrok/src/'
+       - '/data/aospxref/etc/android-7.0.0_r1:/opengrok/etc/'
+       - '/data/aospxref/data/android-7.0.0_r1:/opengrok/data/'
+    networks: 
+      vpn:
+        ipv4_address: 172.168.22.124
+
+  opengrok_aosp_sdk25:
+    container_name: opengrok_aosp_sdk25
+    image: opengrok/docker:latest
+    environment:
+      SYNC_PERIOD_MINUTES: '0'
+      URL_ROOT: '/android-7.1.0_r1'
+    volumes:
+       - '/data/aospxref/src/android-7.1.0_r1:/opengrok/src/'
+       - '/data/aospxref/etc/android-7.1.0_r1:/opengrok/etc/'
+       - '/data/aospxref/data/android-7.1.0_r1:/opengrok/data/'
+    networks: 
+      vpn:
+        ipv4_address: 172.168.22.125
+
+  opengrok_aosp_sdk26:
+    container_name: opengrok_aosp_sdk26
+    image: opengrok/docker:latest
+    environment:
+      SYNC_PERIOD_MINUTES: '0'
+      URL_ROOT: '/android-8.0.0_r1'
+    volumes:
+       - '/data/aospxref/src/android-8.0.0_r1:/opengrok/src/'
+       - '/data/aospxref/etc/android-8.0.0_r1:/opengrok/etc/'
+       - '/data/aospxref/data/android-8.0.0_r1:/opengrok/data/'
+    networks: 
+      vpn:
+        ipv4_address: 172.168.22.126
+
+  opengrok_aosp_sdk27:
+    container_name: opengrok_aosp_sdk27
+    image: opengrok/docker:latest
+    environment:
+      SYNC_PERIOD_MINUTES: '0'
+      URL_ROOT: '/android-8.1.0_r1'
+    volumes:
+       - '/data/aospxref/src/android-8.1.0_r1:/opengrok/src/'
+       - '/data/aospxref/etc/android-8.1.0_r1:/opengrok/etc/'
+       - '/data/aospxref/data/android-8.1.0_r1:/opengrok/data/'
+    networks: 
+      vpn:
+        ipv4_address: 172.168.22.127
+
+  opengrok_aosp_sdk28:
+    container_name: opengrok_aosp_sdk28
+    image: opengrok/docker:latest
+    environment:
+      SYNC_PERIOD_MINUTES: '0'
+      URL_ROOT: '/android-9.0.0_r1'
+    volumes:
+       - '/data/aospxref/src/android-9.0.0_r1:/opengrok/src/'
+       - '/data/aospxref/etc/android-9.0.0_r1:/opengrok/etc/'
+       - '/data/aospxref/data/android-9.0.0_r1:/opengrok/data/'
+    networks: 
+      vpn:
+        ipv4_address: 172.168.22.128
+
+  opengrok_aosp_sdk29:
+    container_name: opengrok_aosp_sdk29
+    image: opengrok/docker:latest
+    environment:
+      SYNC_PERIOD_MINUTES: '0'
+      URL_ROOT: '/android-10.0.0_r1'
+    volumes:
+       - '/data/aospxref/src/android-10.0.0_r1:/opengrok/src/'
+       - '/data/aospxref/etc/android-10.0.0_r1:/opengrok/etc/'
+       - '/data/aospxref/data/android-10.0.0_r1:/opengrok/data/'
+    networks: 
+      vpn:
+        ipv4_address: 172.168.22.129
+
+  opengrok_aosp_sdk30:
+    container_name: opengrok_aosp_sdk30
+    image: opengrok/docker:latest
+    environment:
+      SYNC_PERIOD_MINUTES: '0'
+      URL_ROOT: '/android-11.0.0_r1'
+    volumes:
+       - '/data/aospxref/src/android-11.0.0_r1:/opengrok/src/'
+       - '/data/aospxref/etc/android-11.0.0_r1:/opengrok/etc/'
+       - '/data/aospxref/data/android-11.0.0_r1:/opengrok/data/'
+    networks: 
+      vpn:
+        ipv4_address: 172.168.22.130
+
+  opengrok_aosp_sdk31:
+    container_name: opengrok_aosp_sdk31
+    image: opengrok/docker:latest
+    environment:
+      SYNC_PERIOD_MINUTES: '0'
+      URL_ROOT: '/android-12.0.0_r1'
+    volumes:
+       - '/data/aospxref/src/android-12.0.0_r1:/opengrok/src/'
+       - '/data/aospxref/etc/android-12.0.0_r1:/opengrok/etc/'
+       - '/data/aospxref/data/android-12.0.0_r1:/opengrok/data/'
+    networks: 
+      vpn:
+        ipv4_address: 172.168.22.131
+
+  opengrok_aosp_sdk32:
+    container_name: opengrok_aosp_sdk32
+    image: opengrok/docker:latest
+    environment:
+      SYNC_PERIOD_MINUTES: '0'
+      URL_ROOT: '/android-12.1.0_r1'
+    volumes:
+       - '/data/aospxref/src/android-12.1.0_r1:/opengrok/src/'
+       - '/data/aospxref/etc/android-12.1.0_r1:/opengrok/etc/'
+       - '/data/aospxref/data/android-12.1.0_r1:/opengrok/data/'
+    networks: 
+      vpn:
+        ipv4_address: 172.168.22.132
+
+  opengrok_aosp_sdk33:
+    container_name: opengrok_aosp_sdk33
+    image: opengrok/docker:latest
+    environment:
+      SYNC_PERIOD_MINUTES: '0'
+      URL_ROOT: '/android-13.0.0_r1'
+    volumes:
+       - '/data/aospxref/src/android-13.0.0_r1:/opengrok/src/'
+       - '/data/aospxref/etc/android-13.0.0_r1:/opengrok/etc/'
+       - '/data/aospxref/data/android-13.0.0_r1:/opengrok/data/'
+    networks: 
+      vpn:
+        ipv4_address: 172.168.22.133
+
+networks:
+  vpn:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet:  172.168.22.0/24
+          gateway: 172.168.22.1
