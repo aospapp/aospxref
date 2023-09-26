@@ -9,7 +9,7 @@ services:
     volumes:
       - ./conf.d:/etc/nginx/conf.d
       - ./html:/usr/local/openresty/nginx/html
-    networks: 
+    networks:
       vpn:
         ipv4_address: 172.168.22.99
 
@@ -23,7 +23,13 @@ services:
        - '/data/aospxref/src/android-5.0.0_r1:/opengrok/src/'
        - '/data/aospxref/etc/android-5.0.0_r1:/opengrok/etc/'
        - '/data/aospxref/data/android-5.0.0_r1:/opengrok/data/'
-    networks: 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080/android-5.0.0_r1", "||", "exit", "1"]
+      interval: 2m
+      timeout: 10s
+      retries: 3
+    restart: unless-stop
+    networks:
       vpn:
         ipv4_address: 172.168.22.121
 
@@ -37,7 +43,13 @@ services:
        - '/data/aospxref/src/android-5.1.0_r1:/opengrok/src/'
        - '/data/aospxref/etc/android-5.1.0_r1:/opengrok/etc/'
        - '/data/aospxref/data/android-5.1.0_r1:/opengrok/data/'
-    networks: 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080/android-5.1.0_r1", "||", "exit", "1"]
+      interval: 2m
+      timeout: 10s
+      retries: 3
+    restart: unless-stop
+    networks:
       vpn:
         ipv4_address: 172.168.22.122
 
@@ -51,7 +63,13 @@ services:
        - '/data/aospxref/src/android-6.0.0_r1:/opengrok/src/'
        - '/data/aospxref/etc/android-6.0.0_r1:/opengrok/etc/'
        - '/data/aospxref/data/android-6.0.0_r1:/opengrok/data/'
-    networks: 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080/android-6.0.0_r1", "||", "exit", "1"]
+      interval: 2m
+      timeout: 10s
+      retries: 3
+    restart: unless-stop
+    networks:
       vpn:
         ipv4_address: 172.168.22.123
 
@@ -65,7 +83,13 @@ services:
        - '/data/aospxref/src/android-7.0.0_r1:/opengrok/src/'
        - '/data/aospxref/etc/android-7.0.0_r1:/opengrok/etc/'
        - '/data/aospxref/data/android-7.0.0_r1:/opengrok/data/'
-    networks: 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080/android-7.0.0_r1", "||", "exit", "1"]
+      interval: 2m
+      timeout: 10s
+      retries: 3
+    restart: unless-stop
+    networks:
       vpn:
         ipv4_address: 172.168.22.124
 
@@ -79,7 +103,13 @@ services:
        - '/data/aospxref/src/android-7.1.0_r1:/opengrok/src/'
        - '/data/aospxref/etc/android-7.1.0_r1:/opengrok/etc/'
        - '/data/aospxref/data/android-7.1.0_r1:/opengrok/data/'
-    networks: 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080/android-7.1.0_r1", "||", "exit", "1"]
+      interval: 2m
+      timeout: 10s
+      retries: 3
+    restart: unless-stop
+    networks:
       vpn:
         ipv4_address: 172.168.22.125
 
@@ -93,7 +123,13 @@ services:
        - '/data/aospxref/src/android-8.0.0_r1:/opengrok/src/'
        - '/data/aospxref/etc/android-8.0.0_r1:/opengrok/etc/'
        - '/data/aospxref/data/android-8.0.0_r1:/opengrok/data/'
-    networks: 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080/android-8.0.0_r1", "||", "exit", "1"]
+      interval: 2m
+      timeout: 10s
+      retries: 3
+    restart: unless-stop
+    networks:
       vpn:
         ipv4_address: 172.168.22.126
 
@@ -107,7 +143,13 @@ services:
        - '/data/aospxref/src/android-8.1.0_r1:/opengrok/src/'
        - '/data/aospxref/etc/android-8.1.0_r1:/opengrok/etc/'
        - '/data/aospxref/data/android-8.1.0_r1:/opengrok/data/'
-    networks: 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080/android-8.1.0_r1", "||", "exit", "1"]
+      interval: 2m
+      timeout: 10s
+      retries: 3
+    restart: unless-stop
+    networks:
       vpn:
         ipv4_address: 172.168.22.127
 
@@ -121,7 +163,13 @@ services:
        - '/data/aospxref/src/android-9.0.0_r1:/opengrok/src/'
        - '/data/aospxref/etc/android-9.0.0_r1:/opengrok/etc/'
        - '/data/aospxref/data/android-9.0.0_r1:/opengrok/data/'
-    networks: 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080/android-9.0.0_r1", "||", "exit", "1"]
+      interval: 2m
+      timeout: 10s
+      retries: 3
+    restart: unless-stop
+    networks:
       vpn:
         ipv4_address: 172.168.22.128
 
@@ -135,7 +183,13 @@ services:
        - '/data/aospxref/src/android-10.0.0_r1:/opengrok/src/'
        - '/data/aospxref/etc/android-10.0.0_r1:/opengrok/etc/'
        - '/data/aospxref/data/android-10.0.0_r1:/opengrok/data/'
-    networks: 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080/android-10.0.0_r1", "||", "exit", "1"]
+      interval: 2m
+      timeout: 10s
+      retries: 3
+    restart: unless-stop
+    networks:
       vpn:
         ipv4_address: 172.168.22.129
 
@@ -149,7 +203,13 @@ services:
        - '/data/aospxref/src/android-11.0.0_r1:/opengrok/src/'
        - '/data/aospxref/etc/android-11.0.0_r1:/opengrok/etc/'
        - '/data/aospxref/data/android-11.0.0_r1:/opengrok/data/'
-    networks: 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080/android-11.0.0_r1", "||", "exit", "1"]
+      interval: 2m
+      timeout: 10s
+      retries: 3
+    restart: unless-stop
+    networks:
       vpn:
         ipv4_address: 172.168.22.130
 
@@ -163,7 +223,13 @@ services:
        - '/data/aospxref/src/android-12.0.0_r1:/opengrok/src/'
        - '/data/aospxref/etc/android-12.0.0_r1:/opengrok/etc/'
        - '/data/aospxref/data/android-12.0.0_r1:/opengrok/data/'
-    networks: 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080/android-12.0.0_r1", "||", "exit", "1"]
+      interval: 2m
+      timeout: 10s
+      retries: 3
+    restart: unless-stop
+    networks:
       vpn:
         ipv4_address: 172.168.22.131
 
@@ -177,7 +243,13 @@ services:
        - '/data/aospxref/src/android-12.1.0_r1:/opengrok/src/'
        - '/data/aospxref/etc/android-12.1.0_r1:/opengrok/etc/'
        - '/data/aospxref/data/android-12.1.0_r1:/opengrok/data/'
-    networks: 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080/android-12.1.0_r1", "||", "exit", "1"]
+      interval: 2m
+      timeout: 10s
+      retries: 3
+    restart: unless-stop
+    networks:
       vpn:
         ipv4_address: 172.168.22.132
 
@@ -191,7 +263,13 @@ services:
        - '/data/aospxref/src/android-13.0.0_r1:/opengrok/src/'
        - '/data/aospxref/etc/android-13.0.0_r1:/opengrok/etc/'
        - '/data/aospxref/data/android-13.0.0_r1:/opengrok/data/'
-    networks: 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080/android-13.0.0_r1", "||", "exit", "1"]
+      interval: 2m
+      timeout: 10s
+      retries: 3
+    restart: unless-stop
+    networks:
       vpn:
         ipv4_address: 172.168.22.133
 
