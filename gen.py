@@ -1,19 +1,32 @@
 def generate_docker_compose_yml(versions):
-    template = """  opengrok_aosp_sdk{api}:
-    container_name: opengrok_aosp_sdk{api}
+    template_opengrok = """  aosp_opengrok_sdk{api}:
+    container_name: aosp_opengrok_sdk{api}
     image: opengrok/docker:latest
     environment:
       SYNC_PERIOD_MINUTES: '0'
       URL_ROOT: '/{version}'
+    profiles:
+       - init
     volumes:
+       - '/data/aospxref/webapps/{version}:/usr/local/tomcat/webapps'
        - '/data/aospxref/src/{version}:/opengrok/src/'
        - '/data/aospxref/etc/{version}:/opengrok/etc/'
        - '/data/aospxref/data/{version}:/opengrok/data/'
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080/{version}", "||", "exit", "1"]
-      interval: 2m
-      timeout: 10s
-      retries: 3
+    restart: unless-stopped
+    networks: 
+      vpn:
+        ipv4_address: {ip}
+"""
+    template_tomcat = """  aosp_tomcat_sdk{api}:
+    container_name: aosp_tomcat_sdk{api}
+    image: tomcat:10.1-jdk11
+    profiles:
+       - service
+    volumes:
+      - '/data/aospxref/webapps/{version}:/usr/local/tomcat/webapps'
+      - '/data/aospxref/src/{version}:/opengrok/src/'
+      - '/data/aospxref/etc/{version}:/opengrok/etc/'
+      - '/data/aospxref/data/{version}:/opengrok/data/'
     restart: unless-stopped
     networks: 
       vpn:
@@ -22,9 +35,11 @@ def generate_docker_compose_yml(versions):
 
     result = ""
     result += 'version: "3"\n\nservices:\n'
-    result += """  openresty:
-    container_name: openresty
+    result += """  aosp_openresty:
+    container_name: aosp_openresty
     image: openresty/openresty:alpine
+    profiles:
+       - service
     ports:
       - 8080:80
     volumes:
@@ -38,7 +53,8 @@ def generate_docker_compose_yml(versions):
     for line in versions.splitlines():
         if line != "":
             version, api = line.split(",")
-            result += template.format(version=version, api=api, ip="172.168.22.1" + api) + "\n"
+            result += template_tomcat.format(version=version, api=api, ip="172.168.22.1" + api) + "\n"
+            result += template_opengrok.format(version=version, api=api, ip="172.168.22.2" + api) + "\n"
     result += """networks:
   vpn:
     driver: bridge
