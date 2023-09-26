@@ -28,7 +28,7 @@ services:
       interval: 2m
       timeout: 10s
       retries: 3
-    restart: unless-stop
+    restart: unless-stopped
     networks:
       vpn:
         ipv4_address: 172.168.22.121
@@ -48,7 +48,7 @@ services:
       interval: 2m
       timeout: 10s
       retries: 3
-    restart: unless-stop
+    restart: unless-stopped
     networks:
       vpn:
         ipv4_address: 172.168.22.122
@@ -68,7 +68,7 @@ services:
       interval: 2m
       timeout: 10s
       retries: 3
-    restart: unless-stop
+    restart: unless-stopped
     networks:
       vpn:
         ipv4_address: 172.168.22.123
@@ -88,7 +88,7 @@ services:
       interval: 2m
       timeout: 10s
       retries: 3
-    restart: unless-stop
+    restart: unless-stopped
     networks:
       vpn:
         ipv4_address: 172.168.22.124
@@ -108,7 +108,7 @@ services:
       interval: 2m
       timeout: 10s
       retries: 3
-    restart: unless-stop
+    restart: unless-stopped
     networks:
       vpn:
         ipv4_address: 172.168.22.125
@@ -128,7 +128,7 @@ services:
       interval: 2m
       timeout: 10s
       retries: 3
-    restart: unless-stop
+    restart: unless-stopped
     networks:
       vpn:
         ipv4_address: 172.168.22.126
@@ -148,7 +148,7 @@ services:
       interval: 2m
       timeout: 10s
       retries: 3
-    restart: unless-stop
+    restart: unless-stopped
     networks:
       vpn:
         ipv4_address: 172.168.22.127
@@ -168,7 +168,7 @@ services:
       interval: 2m
       timeout: 10s
       retries: 3
-    restart: unless-stop
+    restart: unless-stopped
     networks:
       vpn:
         ipv4_address: 172.168.22.128
@@ -188,7 +188,7 @@ services:
       interval: 2m
       timeout: 10s
       retries: 3
-    restart: unless-stop
+    restart: unless-stopped
     networks:
       vpn:
         ipv4_address: 172.168.22.129
@@ -208,7 +208,7 @@ services:
       interval: 2m
       timeout: 10s
       retries: 3
-    restart: unless-stop
+    restart: unless-stopped
     networks:
       vpn:
         ipv4_address: 172.168.22.130
@@ -228,7 +228,7 @@ services:
       interval: 2m
       timeout: 10s
       retries: 3
-    restart: unless-stop
+    restart: unless-stopped
     networks:
       vpn:
         ipv4_address: 172.168.22.131
@@ -248,7 +248,7 @@ services:
       interval: 2m
       timeout: 10s
       retries: 3
-    restart: unless-stop
+    restart: unless-stopped
     networks:
       vpn:
         ipv4_address: 172.168.22.132
@@ -268,7 +268,7 @@ services:
       interval: 2m
       timeout: 10s
       retries: 3
-    restart: unless-stop
+    restart: unless-stopped
     networks:
       vpn:
         ipv4_address: 172.168.22.133
