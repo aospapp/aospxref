@@ -9,6 +9,12 @@ def generate_docker_compose_yml(versions):
        - '/data/aospxref/src/{version}:/opengrok/src/'
        - '/data/aospxref/etc/{version}:/opengrok/etc/'
        - '/data/aospxref/data/{version}:/opengrok/data/'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080/{version}", "||", "exit", "1"]
+      interval: 2m
+      timeout: 10s
+      retries: 3
+    restart: unless-stop
     networks: 
       vpn:
         ipv4_address: {ip}
