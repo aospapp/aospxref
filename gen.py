@@ -14,7 +14,7 @@ def generate_docker_compose_yml(versions):
       interval: 2m
       timeout: 10s
       retries: 3
-    restart: unless-stop
+    restart: unless-stopped
     networks: 
       vpn:
         ipv4_address: {ip}
