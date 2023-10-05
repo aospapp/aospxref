@@ -3,6 +3,7 @@ $(document).ready(function() {
     var select = $('<select></select>');
 
     var branchOptions = [
+        "android-14.0.0_r1",
         "android-13.0.0_r1",
         "android-12.1.0_r1",
         "android-12.0.0_r1",
