@@ -444,6 +444,20 @@ services:
       vpn:
         ipv4_address: 172.168.22.233
 
+  opengrok_aosp_sdk34:
+    container_name: opengrok_aosp_sdk34
+    image: opengrok/docker:latest
+    environment:
+      SYNC_PERIOD_MINUTES: '0'
+      URL_ROOT: '/android-14.0.0_r1'
+    volumes:
+       - '/data/aospxref/src/android-14.0.0_r1:/opengrok/src/'
+       - '/data/aospxref/etc/android-14.0.0_r1:/opengrok/etc/'
+       - '/data/aospxref/data/android-14.0.0_r1:/opengrok/data/'
+    networks: 
+      vpn:
+        ipv4_address: 172.168.22.134
+
 networks:
   vpn:
     driver: bridge
