@@ -444,19 +444,38 @@ services:
       vpn:
         ipv4_address: 172.168.22.233
 
-  opengrok_aosp_sdk34:
-    container_name: opengrok_aosp_sdk34
+  aosp_tomcat_sdk34:
+    container_name: aosp_tomcat_sdk34
+    image: tomcat:10.1-jdk11
+    profiles:
+       - service
+    volumes:
+      - '/data/aospxref/webapps/android-14.0.0_r1:/usr/local/tomcat/webapps'
+      - '/data/aospxref/src/android-14.0.0_r1:/opengrok/src/'
+      - '/data/aospxref/etc/android-14.0.0_r1:/opengrok/etc/'
+      - '/data/aospxref/data/android-14.0.0_r1:/opengrok/data/'
+    restart: unless-stopped
+    networks: 
+      vpn:
+        ipv4_address: 172.168.22.134
+
+  aosp_opengrok_sdk34:
+    container_name: aosp_opengrok_sdk34
     image: opengrok/docker:latest
     environment:
       SYNC_PERIOD_MINUTES: '0'
       URL_ROOT: '/android-14.0.0_r1'
+    profiles:
+       - init
     volumes:
+       - '/data/aospxref/webapps/android-14.0.0_r1:/usr/local/tomcat/webapps'
        - '/data/aospxref/src/android-14.0.0_r1:/opengrok/src/'
        - '/data/aospxref/etc/android-14.0.0_r1:/opengrok/etc/'
        - '/data/aospxref/data/android-14.0.0_r1:/opengrok/data/'
+    restart: unless-stopped
     networks: 
       vpn:
-        ipv4_address: 172.168.22.134
+        ipv4_address: 172.168.22.234
 
 networks:
   vpn:
