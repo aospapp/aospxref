@@ -45,6 +45,7 @@ def generate_docker_compose_yml(versions):
     volumes:
       - ./conf.d:/etc/nginx/conf.d
       - ./html:/usr/local/openresty/nginx/html
+    restart: unless-stopped
     networks: 
       vpn:
         ipv4_address: 172.168.22.99
