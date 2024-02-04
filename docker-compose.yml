@@ -12,9 +12,9 @@ services:
       - ./conf.d:/etc/nginx/conf.d
       - ./html:/usr/local/openresty/nginx/html
     restart: unless-stopped
-    networks: 
+    networks:
       vpn:
-        ipv4_address: 172.168.22.99
+        ipv4_address: 172.16.22.99
 
   aosp_tomcat_sdk21:
     container_name: aosp_tomcat_sdk21
@@ -22,32 +22,36 @@ services:
     profiles:
        - service
     volumes:
-      - '/data/aospxref/webapps/android-5.0.0_r1:/usr/local/tomcat/webapps'
-      - '/data/aospxref/src/android-5.0.0_r1:/opengrok/src/'
-      - '/data/aospxref/etc/android-5.0.0_r1:/opengrok/etc/'
-      - '/data/aospxref/data/android-5.0.0_r1:/opengrok/data/'
+      - '/data/aospapp/webapps/android-5.0.2_r3:/usr/local/tomcat/webapps'
+      - '/data/aospapp/src/android-5.0.2_r3:/opengrok/src/'
+      - '/data/aospapp/etc/android-5.0.2_r3:/opengrok/etc/'
+      - '/data/aospapp/data/android-5.0.2_r3:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    networks:
       vpn:
-        ipv4_address: 172.168.22.121
+        ipv4_address: 172.16.22.121
 
   aosp_opengrok_sdk21:
     container_name: aosp_opengrok_sdk21
     image: opengrok/docker:latest
     environment:
       SYNC_PERIOD_MINUTES: '0'
-      URL_ROOT: '/android-5.0.0_r1'
+      URL_ROOT: '/android-5.0.2_r3'
     profiles:
        - init
     volumes:
-       - '/data/aospxref/webapps/android-5.0.0_r1:/usr/local/tomcat/webapps'
-       - '/data/aospxref/src/android-5.0.0_r1:/opengrok/src/'
-       - '/data/aospxref/etc/android-5.0.0_r1:/opengrok/etc/'
-       - '/data/aospxref/data/android-5.0.0_r1:/opengrok/data/'
+       - '/data/aospapp/webapps/android-5.0.2_r3:/usr/local/tomcat/webapps'
+       - '/data/aospapp/src/android-5.0.2_r3:/opengrok/src/'
+       - '/data/aospapp/etc/android-5.0.2_r3:/opengrok/etc/'
+       - '/data/aospapp/data/android-5.0.2_r3:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    networks:
       vpn:
-        ipv4_address: 172.168.22.221
+        ipv4_address: 172.16.22.221
 
   aosp_tomcat_sdk22:
     container_name: aosp_tomcat_sdk22
@@ -55,14 +59,18 @@ services:
     profiles:
        - service
     volumes:
-      - '/data/aospxref/webapps/android-5.1.0_r1:/usr/local/tomcat/webapps'
-      - '/data/aospxref/src/android-5.1.0_r1:/opengrok/src/'
-      - '/data/aospxref/etc/android-5.1.0_r1:/opengrok/etc/'
-      - '/data/aospxref/data/android-5.1.0_r1:/opengrok/data/'
+      - '/data/aospapp/webapps/android-5.1.0_r1:/usr/local/tomcat/webapps'
+      - '/data/aospapp/src/android-5.1.0_r1:/opengrok/src/'
+      - '/data/aospapp/etc/android-5.1.0_r1:/opengrok/etc/'
+      - '/data/aospapp/data/android-5.1.0_r1:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    networks:
       vpn:
-        ipv4_address: 172.168.22.122
+        ipv4_address: 172.16.22.122
 
   aosp_opengrok_sdk22:
     container_name: aosp_opengrok_sdk22
@@ -73,14 +81,14 @@ services:
     profiles:
        - init
     volumes:
-       - '/data/aospxref/webapps/android-5.1.0_r1:/usr/local/tomcat/webapps'
-       - '/data/aospxref/src/android-5.1.0_r1:/opengrok/src/'
-       - '/data/aospxref/etc/android-5.1.0_r1:/opengrok/etc/'
-       - '/data/aospxref/data/android-5.1.0_r1:/opengrok/data/'
+       - '/data/aospapp/webapps/android-5.1.0_r1:/usr/local/tomcat/webapps'
+       - '/data/aospapp/src/android-5.1.0_r1:/opengrok/src/'
+       - '/data/aospapp/etc/android-5.1.0_r1:/opengrok/etc/'
+       - '/data/aospapp/data/android-5.1.0_r1:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    networks:
       vpn:
-        ipv4_address: 172.168.22.222
+        ipv4_address: 172.16.22.222
 
   aosp_tomcat_sdk23:
     container_name: aosp_tomcat_sdk23
@@ -88,14 +96,18 @@ services:
     profiles:
        - service
     volumes:
-      - '/data/aospxref/webapps/android-6.0.0_r1:/usr/local/tomcat/webapps'
-      - '/data/aospxref/src/android-6.0.0_r1:/opengrok/src/'
-      - '/data/aospxref/etc/android-6.0.0_r1:/opengrok/etc/'
-      - '/data/aospxref/data/android-6.0.0_r1:/opengrok/data/'
+      - '/data/aospapp/webapps/android-6.0.0_r1:/usr/local/tomcat/webapps'
+      - '/data/aospapp/src/android-6.0.0_r1:/opengrok/src/'
+      - '/data/aospapp/etc/android-6.0.0_r1:/opengrok/etc/'
+      - '/data/aospapp/data/android-6.0.0_r1:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    networks:
       vpn:
-        ipv4_address: 172.168.22.123
+        ipv4_address: 172.16.22.123
 
   aosp_opengrok_sdk23:
     container_name: aosp_opengrok_sdk23
@@ -106,14 +118,14 @@ services:
     profiles:
        - init
     volumes:
-       - '/data/aospxref/webapps/android-6.0.0_r1:/usr/local/tomcat/webapps'
-       - '/data/aospxref/src/android-6.0.0_r1:/opengrok/src/'
-       - '/data/aospxref/etc/android-6.0.0_r1:/opengrok/etc/'
-       - '/data/aospxref/data/android-6.0.0_r1:/opengrok/data/'
+       - '/data/aospapp/webapps/android-6.0.0_r1:/usr/local/tomcat/webapps'
+       - '/data/aospapp/src/android-6.0.0_r1:/opengrok/src/'
+       - '/data/aospapp/etc/android-6.0.0_r1:/opengrok/etc/'
+       - '/data/aospapp/data/android-6.0.0_r1:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    networks:
       vpn:
-        ipv4_address: 172.168.22.223
+        ipv4_address: 172.16.22.223
 
   aosp_tomcat_sdk24:
     container_name: aosp_tomcat_sdk24
@@ -121,14 +133,18 @@ services:
     profiles:
        - service
     volumes:
-      - '/data/aospxref/webapps/android-7.0.0_r1:/usr/local/tomcat/webapps'
-      - '/data/aospxref/src/android-7.0.0_r1:/opengrok/src/'
-      - '/data/aospxref/etc/android-7.0.0_r1:/opengrok/etc/'
-      - '/data/aospxref/data/android-7.0.0_r1:/opengrok/data/'
+      - '/data/aospapp/webapps/android-7.0.0_r1:/usr/local/tomcat/webapps'
+      - '/data/aospapp/src/android-7.0.0_r1:/opengrok/src/'
+      - '/data/aospapp/etc/android-7.0.0_r1:/opengrok/etc/'
+      - '/data/aospapp/data/android-7.0.0_r1:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    networks:
       vpn:
-        ipv4_address: 172.168.22.124
+        ipv4_address: 172.16.22.124
 
   aosp_opengrok_sdk24:
     container_name: aosp_opengrok_sdk24
@@ -139,14 +155,14 @@ services:
     profiles:
        - init
     volumes:
-       - '/data/aospxref/webapps/android-7.0.0_r1:/usr/local/tomcat/webapps'
-       - '/data/aospxref/src/android-7.0.0_r1:/opengrok/src/'
-       - '/data/aospxref/etc/android-7.0.0_r1:/opengrok/etc/'
-       - '/data/aospxref/data/android-7.0.0_r1:/opengrok/data/'
+       - '/data/aospapp/webapps/android-7.0.0_r1:/usr/local/tomcat/webapps'
+       - '/data/aospapp/src/android-7.0.0_r1:/opengrok/src/'
+       - '/data/aospapp/etc/android-7.0.0_r1:/opengrok/etc/'
+       - '/data/aospapp/data/android-7.0.0_r1:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    networks:
       vpn:
-        ipv4_address: 172.168.22.224
+        ipv4_address: 172.16.22.224
 
   aosp_tomcat_sdk25:
     container_name: aosp_tomcat_sdk25
@@ -154,32 +170,36 @@ services:
     profiles:
        - service
     volumes:
-      - '/data/aospxref/webapps/android-7.1.0_r1:/usr/local/tomcat/webapps'
-      - '/data/aospxref/src/android-7.1.0_r1:/opengrok/src/'
-      - '/data/aospxref/etc/android-7.1.0_r1:/opengrok/etc/'
-      - '/data/aospxref/data/android-7.1.0_r1:/opengrok/data/'
+      - '/data/aospapp/webapps/android-7.1.0_r4:/usr/local/tomcat/webapps'
+      - '/data/aospapp/src/android-7.1.0_r4:/opengrok/src/'
+      - '/data/aospapp/etc/android-7.1.0_r4:/opengrok/etc/'
+      - '/data/aospapp/data/android-7.1.0_r4:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    networks:
       vpn:
-        ipv4_address: 172.168.22.125
+        ipv4_address: 172.16.22.125
 
   aosp_opengrok_sdk25:
     container_name: aosp_opengrok_sdk25
     image: opengrok/docker:latest
     environment:
       SYNC_PERIOD_MINUTES: '0'
-      URL_ROOT: '/android-7.1.0_r1'
+      URL_ROOT: '/android-7.1.0_r4'
     profiles:
        - init
     volumes:
-       - '/data/aospxref/webapps/android-7.1.0_r1:/usr/local/tomcat/webapps'
-       - '/data/aospxref/src/android-7.1.0_r1:/opengrok/src/'
-       - '/data/aospxref/etc/android-7.1.0_r1:/opengrok/etc/'
-       - '/data/aospxref/data/android-7.1.0_r1:/opengrok/data/'
+       - '/data/aospapp/webapps/android-7.1.0_r4:/usr/local/tomcat/webapps'
+       - '/data/aospapp/src/android-7.1.0_r4:/opengrok/src/'
+       - '/data/aospapp/etc/android-7.1.0_r4:/opengrok/etc/'
+       - '/data/aospapp/data/android-7.1.0_r4:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    networks:
       vpn:
-        ipv4_address: 172.168.22.225
+        ipv4_address: 172.16.22.225
 
   aosp_tomcat_sdk26:
     container_name: aosp_tomcat_sdk26
@@ -187,32 +207,36 @@ services:
     profiles:
        - service
     volumes:
-      - '/data/aospxref/webapps/android-8.0.0_r1:/usr/local/tomcat/webapps'
-      - '/data/aospxref/src/android-8.0.0_r1:/opengrok/src/'
-      - '/data/aospxref/etc/android-8.0.0_r1:/opengrok/etc/'
-      - '/data/aospxref/data/android-8.0.0_r1:/opengrok/data/'
+      - '/data/aospapp/webapps/android-8.0.0_r4:/usr/local/tomcat/webapps'
+      - '/data/aospapp/src/android-8.0.0_r4:/opengrok/src/'
+      - '/data/aospapp/etc/android-8.0.0_r4:/opengrok/etc/'
+      - '/data/aospapp/data/android-8.0.0_r4:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    networks:
       vpn:
-        ipv4_address: 172.168.22.126
+        ipv4_address: 172.16.22.126
 
   aosp_opengrok_sdk26:
     container_name: aosp_opengrok_sdk26
     image: opengrok/docker:latest
     environment:
       SYNC_PERIOD_MINUTES: '0'
-      URL_ROOT: '/android-8.0.0_r1'
+      URL_ROOT: '/android-8.0.0_r4'
     profiles:
        - init
     volumes:
-       - '/data/aospxref/webapps/android-8.0.0_r1:/usr/local/tomcat/webapps'
-       - '/data/aospxref/src/android-8.0.0_r1:/opengrok/src/'
-       - '/data/aospxref/etc/android-8.0.0_r1:/opengrok/etc/'
-       - '/data/aospxref/data/android-8.0.0_r1:/opengrok/data/'
+       - '/data/aospapp/webapps/android-8.0.0_r4:/usr/local/tomcat/webapps'
+       - '/data/aospapp/src/android-8.0.0_r4:/opengrok/src/'
+       - '/data/aospapp/etc/android-8.0.0_r4:/opengrok/etc/'
+       - '/data/aospapp/data/android-8.0.0_r4:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    networks:
       vpn:
-        ipv4_address: 172.168.22.226
+        ipv4_address: 172.16.22.226
 
   aosp_tomcat_sdk27:
     container_name: aosp_tomcat_sdk27
@@ -220,14 +244,18 @@ services:
     profiles:
        - service
     volumes:
-      - '/data/aospxref/webapps/android-8.1.0_r1:/usr/local/tomcat/webapps'
-      - '/data/aospxref/src/android-8.1.0_r1:/opengrok/src/'
-      - '/data/aospxref/etc/android-8.1.0_r1:/opengrok/etc/'
-      - '/data/aospxref/data/android-8.1.0_r1:/opengrok/data/'
+      - '/data/aospapp/webapps/android-8.1.0_r1:/usr/local/tomcat/webapps'
+      - '/data/aospapp/src/android-8.1.0_r1:/opengrok/src/'
+      - '/data/aospapp/etc/android-8.1.0_r1:/opengrok/etc/'
+      - '/data/aospapp/data/android-8.1.0_r1:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    networks:
       vpn:
-        ipv4_address: 172.168.22.127
+        ipv4_address: 172.16.22.127
 
   aosp_opengrok_sdk27:
     container_name: aosp_opengrok_sdk27
@@ -238,14 +266,14 @@ services:
     profiles:
        - init
     volumes:
-       - '/data/aospxref/webapps/android-8.1.0_r1:/usr/local/tomcat/webapps'
-       - '/data/aospxref/src/android-8.1.0_r1:/opengrok/src/'
-       - '/data/aospxref/etc/android-8.1.0_r1:/opengrok/etc/'
-       - '/data/aospxref/data/android-8.1.0_r1:/opengrok/data/'
+       - '/data/aospapp/webapps/android-8.1.0_r1:/usr/local/tomcat/webapps'
+       - '/data/aospapp/src/android-8.1.0_r1:/opengrok/src/'
+       - '/data/aospapp/etc/android-8.1.0_r1:/opengrok/etc/'
+       - '/data/aospapp/data/android-8.1.0_r1:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    networks:
       vpn:
-        ipv4_address: 172.168.22.227
+        ipv4_address: 172.16.22.227
 
   aosp_tomcat_sdk28:
     container_name: aosp_tomcat_sdk28
@@ -253,32 +281,36 @@ services:
     profiles:
        - service
     volumes:
-      - '/data/aospxref/webapps/android-9.0.0_r1:/usr/local/tomcat/webapps'
-      - '/data/aospxref/src/android-9.0.0_r1:/opengrok/src/'
-      - '/data/aospxref/etc/android-9.0.0_r1:/opengrok/etc/'
-      - '/data/aospxref/data/android-9.0.0_r1:/opengrok/data/'
+      - '/data/aospapp/webapps/android-9.0.0_r3:/usr/local/tomcat/webapps'
+      - '/data/aospapp/src/android-9.0.0_r3:/opengrok/src/'
+      - '/data/aospapp/etc/android-9.0.0_r3:/opengrok/etc/'
+      - '/data/aospapp/data/android-9.0.0_r3:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    networks:
       vpn:
-        ipv4_address: 172.168.22.128
+        ipv4_address: 172.16.22.128
 
   aosp_opengrok_sdk28:
     container_name: aosp_opengrok_sdk28
     image: opengrok/docker:latest
     environment:
       SYNC_PERIOD_MINUTES: '0'
-      URL_ROOT: '/android-9.0.0_r1'
+      URL_ROOT: '/android-9.0.0_r3'
     profiles:
        - init
     volumes:
-       - '/data/aospxref/webapps/android-9.0.0_r1:/usr/local/tomcat/webapps'
-       - '/data/aospxref/src/android-9.0.0_r1:/opengrok/src/'
-       - '/data/aospxref/etc/android-9.0.0_r1:/opengrok/etc/'
-       - '/data/aospxref/data/android-9.0.0_r1:/opengrok/data/'
+       - '/data/aospapp/webapps/android-9.0.0_r3:/usr/local/tomcat/webapps'
+       - '/data/aospapp/src/android-9.0.0_r3:/opengrok/src/'
+       - '/data/aospapp/etc/android-9.0.0_r3:/opengrok/etc/'
+       - '/data/aospapp/data/android-9.0.0_r3:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    networks:
       vpn:
-        ipv4_address: 172.168.22.228
+        ipv4_address: 172.16.22.228
 
   aosp_tomcat_sdk29:
     container_name: aosp_tomcat_sdk29
@@ -286,32 +318,36 @@ services:
     profiles:
        - service
     volumes:
-      - '/data/aospxref/webapps/android-10.0.0_r1:/usr/local/tomcat/webapps'
-      - '/data/aospxref/src/android-10.0.0_r1:/opengrok/src/'
-      - '/data/aospxref/etc/android-10.0.0_r1:/opengrok/etc/'
-      - '/data/aospxref/data/android-10.0.0_r1:/opengrok/data/'
+      - '/data/aospapp/webapps/android-10.0.0_r2:/usr/local/tomcat/webapps'
+      - '/data/aospapp/src/android-10.0.0_r2:/opengrok/src/'
+      - '/data/aospapp/etc/android-10.0.0_r2:/opengrok/etc/'
+      - '/data/aospapp/data/android-10.0.0_r2:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    networks:
       vpn:
-        ipv4_address: 172.168.22.129
+        ipv4_address: 172.16.22.129
 
   aosp_opengrok_sdk29:
     container_name: aosp_opengrok_sdk29
     image: opengrok/docker:latest
     environment:
       SYNC_PERIOD_MINUTES: '0'
-      URL_ROOT: '/android-10.0.0_r1'
+      URL_ROOT: '/android-10.0.0_r2'
     profiles:
        - init
     volumes:
-       - '/data/aospxref/webapps/android-10.0.0_r1:/usr/local/tomcat/webapps'
-       - '/data/aospxref/src/android-10.0.0_r1:/opengrok/src/'
-       - '/data/aospxref/etc/android-10.0.0_r1:/opengrok/etc/'
-       - '/data/aospxref/data/android-10.0.0_r1:/opengrok/data/'
+       - '/data/aospapp/webapps/android-10.0.0_r2:/usr/local/tomcat/webapps'
+       - '/data/aospapp/src/android-10.0.0_r2:/opengrok/src/'
+       - '/data/aospapp/etc/android-10.0.0_r2:/opengrok/etc/'
+       - '/data/aospapp/data/android-10.0.0_r2:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    networks:
       vpn:
-        ipv4_address: 172.168.22.229
+        ipv4_address: 172.16.22.229
 
   aosp_tomcat_sdk30:
     container_name: aosp_tomcat_sdk30
@@ -319,14 +355,18 @@ services:
     profiles:
        - service
     volumes:
-      - '/data/aospxref/webapps/android-11.0.0_r1:/usr/local/tomcat/webapps'
-      - '/data/aospxref/src/android-11.0.0_r1:/opengrok/src/'
-      - '/data/aospxref/etc/android-11.0.0_r1:/opengrok/etc/'
-      - '/data/aospxref/data/android-11.0.0_r1:/opengrok/data/'
+      - '/data/aospapp/webapps/android-11.0.0_r1:/usr/local/tomcat/webapps'
+      - '/data/aospapp/src/android-11.0.0_r1:/opengrok/src/'
+      - '/data/aospapp/etc/android-11.0.0_r1:/opengrok/etc/'
+      - '/data/aospapp/data/android-11.0.0_r1:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    networks:
       vpn:
-        ipv4_address: 172.168.22.130
+        ipv4_address: 172.16.22.130
 
   aosp_opengrok_sdk30:
     container_name: aosp_opengrok_sdk30
@@ -337,14 +377,14 @@ services:
     profiles:
        - init
     volumes:
-       - '/data/aospxref/webapps/android-11.0.0_r1:/usr/local/tomcat/webapps'
-       - '/data/aospxref/src/android-11.0.0_r1:/opengrok/src/'
-       - '/data/aospxref/etc/android-11.0.0_r1:/opengrok/etc/'
-       - '/data/aospxref/data/android-11.0.0_r1:/opengrok/data/'
+       - '/data/aospapp/webapps/android-11.0.0_r1:/usr/local/tomcat/webapps'
+       - '/data/aospapp/src/android-11.0.0_r1:/opengrok/src/'
+       - '/data/aospapp/etc/android-11.0.0_r1:/opengrok/etc/'
+       - '/data/aospapp/data/android-11.0.0_r1:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    networks:
       vpn:
-        ipv4_address: 172.168.22.230
+        ipv4_address: 172.16.22.230
 
   aosp_tomcat_sdk31:
     container_name: aosp_tomcat_sdk31
@@ -352,32 +392,36 @@ services:
     profiles:
        - service
     volumes:
-      - '/data/aospxref/webapps/android-12.0.0_r1:/usr/local/tomcat/webapps'
-      - '/data/aospxref/src/android-12.0.0_r1:/opengrok/src/'
-      - '/data/aospxref/etc/android-12.0.0_r1:/opengrok/etc/'
-      - '/data/aospxref/data/android-12.0.0_r1:/opengrok/data/'
+      - '/data/aospapp/webapps/android-12.0.0_r2:/usr/local/tomcat/webapps'
+      - '/data/aospapp/src/android-12.0.0_r2:/opengrok/src/'
+      - '/data/aospapp/etc/android-12.0.0_r2:/opengrok/etc/'
+      - '/data/aospapp/data/android-12.0.0_r2:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    networks:
       vpn:
-        ipv4_address: 172.168.22.131
+        ipv4_address: 172.16.22.131
 
   aosp_opengrok_sdk31:
     container_name: aosp_opengrok_sdk31
     image: opengrok/docker:latest
     environment:
       SYNC_PERIOD_MINUTES: '0'
-      URL_ROOT: '/android-12.0.0_r1'
+      URL_ROOT: '/android-12.0.0_r2'
     profiles:
        - init
     volumes:
-       - '/data/aospxref/webapps/android-12.0.0_r1:/usr/local/tomcat/webapps'
-       - '/data/aospxref/src/android-12.0.0_r1:/opengrok/src/'
-       - '/data/aospxref/etc/android-12.0.0_r1:/opengrok/etc/'
-       - '/data/aospxref/data/android-12.0.0_r1:/opengrok/data/'
+       - '/data/aospapp/webapps/android-12.0.0_r2:/usr/local/tomcat/webapps'
+       - '/data/aospapp/src/android-12.0.0_r2:/opengrok/src/'
+       - '/data/aospapp/etc/android-12.0.0_r2:/opengrok/etc/'
+       - '/data/aospapp/data/android-12.0.0_r2:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    networks:
       vpn:
-        ipv4_address: 172.168.22.231
+        ipv4_address: 172.16.22.231
 
   aosp_tomcat_sdk32:
     container_name: aosp_tomcat_sdk32
@@ -385,14 +429,18 @@ services:
     profiles:
        - service
     volumes:
-      - '/data/aospxref/webapps/android-12.1.0_r1:/usr/local/tomcat/webapps'
-      - '/data/aospxref/src/android-12.1.0_r1:/opengrok/src/'
-      - '/data/aospxref/etc/android-12.1.0_r1:/opengrok/etc/'
-      - '/data/aospxref/data/android-12.1.0_r1:/opengrok/data/'
+      - '/data/aospapp/webapps/android-12.1.0_r1:/usr/local/tomcat/webapps'
+      - '/data/aospapp/src/android-12.1.0_r1:/opengrok/src/'
+      - '/data/aospapp/etc/android-12.1.0_r1:/opengrok/etc/'
+      - '/data/aospapp/data/android-12.1.0_r1:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    networks:
       vpn:
-        ipv4_address: 172.168.22.132
+        ipv4_address: 172.16.22.132
 
   aosp_opengrok_sdk32:
     container_name: aosp_opengrok_sdk32
@@ -403,14 +451,14 @@ services:
     profiles:
        - init
     volumes:
-       - '/data/aospxref/webapps/android-12.1.0_r1:/usr/local/tomcat/webapps'
-       - '/data/aospxref/src/android-12.1.0_r1:/opengrok/src/'
-       - '/data/aospxref/etc/android-12.1.0_r1:/opengrok/etc/'
-       - '/data/aospxref/data/android-12.1.0_r1:/opengrok/data/'
+       - '/data/aospapp/webapps/android-12.1.0_r1:/usr/local/tomcat/webapps'
+       - '/data/aospapp/src/android-12.1.0_r1:/opengrok/src/'
+       - '/data/aospapp/etc/android-12.1.0_r1:/opengrok/etc/'
+       - '/data/aospapp/data/android-12.1.0_r1:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    networks:
       vpn:
-        ipv4_address: 172.168.22.232
+        ipv4_address: 172.16.22.232
 
   aosp_tomcat_sdk33:
     container_name: aosp_tomcat_sdk33
@@ -418,32 +466,36 @@ services:
     profiles:
        - service
     volumes:
-      - '/data/aospxref/webapps/android-13.0.0_r1:/usr/local/tomcat/webapps'
-      - '/data/aospxref/src/android-13.0.0_r1:/opengrok/src/'
-      - '/data/aospxref/etc/android-13.0.0_r1:/opengrok/etc/'
-      - '/data/aospxref/data/android-13.0.0_r1:/opengrok/data/'
+      - '/data/aospapp/webapps/android-13.0.0_r3:/usr/local/tomcat/webapps'
+      - '/data/aospapp/src/android-13.0.0_r3:/opengrok/src/'
+      - '/data/aospapp/etc/android-13.0.0_r3:/opengrok/etc/'
+      - '/data/aospapp/data/android-13.0.0_r3:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    networks:
       vpn:
-        ipv4_address: 172.168.22.133
+        ipv4_address: 172.16.22.133
 
   aosp_opengrok_sdk33:
     container_name: aosp_opengrok_sdk33
     image: opengrok/docker:latest
     environment:
       SYNC_PERIOD_MINUTES: '0'
-      URL_ROOT: '/android-13.0.0_r1'
+      URL_ROOT: '/android-13.0.0_r3'
     profiles:
        - init
     volumes:
-       - '/data/aospxref/webapps/android-13.0.0_r1:/usr/local/tomcat/webapps'
-       - '/data/aospxref/src/android-13.0.0_r1:/opengrok/src/'
-       - '/data/aospxref/etc/android-13.0.0_r1:/opengrok/etc/'
-       - '/data/aospxref/data/android-13.0.0_r1:/opengrok/data/'
+       - '/data/aospapp/webapps/android-13.0.0_r3:/usr/local/tomcat/webapps'
+       - '/data/aospapp/src/android-13.0.0_r3:/opengrok/src/'
+       - '/data/aospapp/etc/android-13.0.0_r3:/opengrok/etc/'
+       - '/data/aospapp/data/android-13.0.0_r3:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    networks:
       vpn:
-        ipv4_address: 172.168.22.233
+        ipv4_address: 172.16.22.233
 
   aosp_tomcat_sdk34:
     container_name: aosp_tomcat_sdk34
@@ -451,32 +503,36 @@ services:
     profiles:
        - service
     volumes:
-      - '/data/aospxref/webapps/android-14.0.0_r1:/usr/local/tomcat/webapps'
-      - '/data/aospxref/src/android-14.0.0_r1:/opengrok/src/'
-      - '/data/aospxref/etc/android-14.0.0_r1:/opengrok/etc/'
-      - '/data/aospxref/data/android-14.0.0_r1:/opengrok/data/'
+      - '/data/aospapp/webapps/android-14.0.0_r2:/usr/local/tomcat/webapps'
+      - '/data/aospapp/src/android-14.0.0_r2:/opengrok/src/'
+      - '/data/aospapp/etc/android-14.0.0_r2:/opengrok/etc/'
+      - '/data/aospapp/data/android-14.0.0_r2:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    networks:
       vpn:
-        ipv4_address: 172.168.22.134
+        ipv4_address: 172.16.22.134
 
   aosp_opengrok_sdk34:
     container_name: aosp_opengrok_sdk34
     image: opengrok/docker:latest
     environment:
       SYNC_PERIOD_MINUTES: '0'
-      URL_ROOT: '/android-14.0.0_r1'
+      URL_ROOT: '/android-14.0.0_r2'
     profiles:
        - init
     volumes:
-       - '/data/aospxref/webapps/android-14.0.0_r1:/usr/local/tomcat/webapps'
-       - '/data/aospxref/src/android-14.0.0_r1:/opengrok/src/'
-       - '/data/aospxref/etc/android-14.0.0_r1:/opengrok/etc/'
-       - '/data/aospxref/data/android-14.0.0_r1:/opengrok/data/'
+       - '/data/aospapp/webapps/android-14.0.0_r2:/usr/local/tomcat/webapps'
+       - '/data/aospapp/src/android-14.0.0_r2:/opengrok/src/'
+       - '/data/aospapp/etc/android-14.0.0_r2:/opengrok/etc/'
+       - '/data/aospapp/data/android-14.0.0_r2:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    networks:
       vpn:
-        ipv4_address: 172.168.22.234
+        ipv4_address: 172.16.22.234
 
 networks:
   vpn:
@@ -484,5 +540,5 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet:  172.168.22.0/24
-          gateway: 172.168.22.1
+        - subnet:  172.16.22.0/24
+          gateway: 172.16.22.1

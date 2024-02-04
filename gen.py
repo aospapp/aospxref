@@ -8,12 +8,12 @@ def generate_docker_compose_yml(versions):
     profiles:
        - init
     volumes:
-       - '/data/aospxref/webapps/{version}:/usr/local/tomcat/webapps'
-       - '/data/aospxref/src/{version}:/opengrok/src/'
-       - '/data/aospxref/etc/{version}:/opengrok/etc/'
-       - '/data/aospxref/data/{version}:/opengrok/data/'
+       - '/data/aospapp/webapps/{version}:/usr/local/tomcat/webapps'
+       - '/data/aospapp/src/{version}:/opengrok/src/'
+       - '/data/aospapp/etc/{version}:/opengrok/etc/'
+       - '/data/aospapp/data/{version}:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    networks:
       vpn:
         ipv4_address: {ip}
 """
@@ -23,12 +23,16 @@ def generate_docker_compose_yml(versions):
     profiles:
        - service
     volumes:
-      - '/data/aospxref/webapps/{version}:/usr/local/tomcat/webapps'
-      - '/data/aospxref/src/{version}:/opengrok/src/'
-      - '/data/aospxref/etc/{version}:/opengrok/etc/'
-      - '/data/aospxref/data/{version}:/opengrok/data/'
+      - '/data/aospapp/webapps/{version}:/usr/local/tomcat/webapps'
+      - '/data/aospapp/src/{version}:/opengrok/src/'
+      - '/data/aospapp/etc/{version}:/opengrok/etc/'
+      - '/data/aospapp/data/{version}:/opengrok/data/'
     restart: unless-stopped
-    networks: 
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    networks:
       vpn:
         ipv4_address: {ip}
 """
@@ -46,24 +50,24 @@ def generate_docker_compose_yml(versions):
       - ./conf.d:/etc/nginx/conf.d
       - ./html:/usr/local/openresty/nginx/html
     restart: unless-stopped
-    networks: 
+    networks:
       vpn:
-        ipv4_address: 172.168.22.99
+        ipv4_address: 172.16.22.99
 """
     result += "\n"
     for line in versions.splitlines():
         if line != "":
             version, api = line.split(",")
-            result += template_tomcat.format(version=version, api=api, ip="172.168.22.1" + api) + "\n"
-            result += template_opengrok.format(version=version, api=api, ip="172.168.22.2" + api) + "\n"
+            result += template_tomcat.format(version=version, api=api, ip="172.16.22.1" + api) + "\n"
+            result += template_opengrok.format(version=version, api=api, ip="172.16.22.2" + api) + "\n"
     result += """networks:
   vpn:
     driver: bridge
     ipam:
       driver: default
       config:
-        - subnet:  172.168.22.0/24
-          gateway: 172.168.22.1
+        - subnet:  172.16.22.0/24
+          gateway: 172.16.22.1
 """
     return result
 
@@ -73,7 +77,6 @@ def generate_default_conf(versions):
         proxy_pass http://{ip}:8080/{version}/;
 
         proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
 
@@ -92,7 +95,7 @@ def generate_default_conf(versions):
     for line in versions.splitlines():
         if line != "":
             version, api = line.split(",")
-            result += template.replace("{version}", version).replace("{ip}", "172.168.22.1" + api) + "\n"
+            result += template.replace("{version}", version).replace("{ip}", "172.16.22.1" + api) + "\n"
 
     result += "}\n"
     return result
@@ -116,4 +119,3 @@ if __name__ == "__main__":
     with open("conf.d/default.conf", "w") as f:
         f.write(generate_default_conf(content))
     # gen_li(content)
-
