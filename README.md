@@ -23,3 +23,7 @@ You can remove `.repo`, `prebuilts` to reduce size
 ├── android-8.1.0_r1
 └── android-9.0.0_r1
 ```
+
+Edit version.txt to your local versions
+
+then run gen.py to generate docker-compose.yml
