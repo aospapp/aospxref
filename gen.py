@@ -38,7 +38,7 @@ def generate_docker_compose_yml(versions):
 """
 
     result = ""
-    result += 'version: "3"\n\nservices:\n'
+    result += 'services:\n'
     result += """  aosp_openresty:
     container_name: aosp_openresty
     image: openresty/openresty:alpine
