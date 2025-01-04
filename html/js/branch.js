@@ -3,20 +3,21 @@ $(document).ready(function() {
     var select = $('<select></select>');
 
     var branchOptions = [
-        "android-14.0.0_r1",
-        "android-13.0.0_r1",
+        "android-15.0.0_r3",
+        "android-14.0.0_r2",
+        "android-13.0.0_r3",
         "android-12.1.0_r1",
-        "android-12.0.0_r1",
+        "android-12.0.0_r2",
         "android-11.0.0_r1",
-        "android-10.0.0_r1",
-        "android-9.0.0_r1",
+        "android-10.0.0_r2",
+        "android-9.0.0_r3",
         "android-8.1.0_r1",
-        "android-8.0.0_r1",
-        "android-7.1.0_r1",
+        "android-8.0.0_r4",
+        "android-7.1.0_r4",
         "android-7.0.0_r1",
         "android-6.0.0_r1",
         "android-5.1.0_r1",
-        "android-5.0.0_r1"
+        "android-5.0.2_r3"
     ];
 
     var currentBranch = window.location.pathname.match(/android-\d+\.\d+\.\d+_r\d+/);
