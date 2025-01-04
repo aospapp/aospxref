@@ -43,7 +43,7 @@ OPENGROK_CONFIG_DIR = os.path.join(OPENGROK_BASE_DIR, "etc")
 OPENGROK_WEBAPPS_DIR = os.path.join(tomcat_root, "webapps")
 OPENGROK_JAR = os.path.join(OPENGROK_LIB_DIR, "opengrok.jar")
 
-AOSPAPP_BASE_DIR = os.path.join(fs_root, "aospapp")
+AOSPAPP_BASE_DIR = os.path.join(fs_root, "scripts")
 ROOT_WAR = os.path.join(AOSPAPP_BASE_DIR, "ROOT.war")
 
 task_queue = queue.Queue()
@@ -330,8 +330,10 @@ def check_index_and_wipe_out(logger, project, config_file):
                             shutil.rmtree(path)
                         except Exception as exc:
                             logger.error("cannot delete '{}': {}".format(path, exc))
+                        return True
             else:
                 print("[TEST] ignore wiping data")
+    return False
 
 
 def get_all_aosp_projects():
@@ -348,7 +350,7 @@ def process_project(logger, log_level, project):
     if not os.path.exists(config_file_path) or os.path.getsize(config_file_path) == 0:
         create_bare_config(logger, project, config_file_path)
 
-    check_index_and_wipe_out(logger, project, config_file_path)
+    need_index = check_index_and_wipe_out(logger, project, config_file_path)
 
     #
     # If there is read-only configuration file, merge it with current
@@ -383,18 +385,19 @@ def process_project(logger, log_level, project):
             if out_file_path:
                 os.remove(out_file_path)
 
-    indexer_args = (
-        logger,
-        project,
-        uri,
-        config_file_path,
-    )
-
-    logger.debug("Queue index thread")
-    index_thread = threading.Thread(
-        target=project_indexer, name="Indexer thread for " + project, args=indexer_args, daemon=True
-    )
-    task_queue.put(index_thread)
+    if need_index:
+        indexer_args = (
+            logger,
+            project,
+            uri,
+            config_file_path,
+        )
+    
+        logger.info("Queue index thread for " + project)
+        index_thread = threading.Thread(
+            target=project_indexer, name="Indexer thread for " + project, args=indexer_args, daemon=True
+        )
+        task_queue.put(index_thread)
 
 
 def indexer_worker():

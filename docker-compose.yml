@@ -13,9 +13,9 @@ services:
         ipv4_address: 172.16.22.99
 
   aosp_opengrok:
+    build:
+      context: ./docker
     container_name: aosp_opengrok
-    image: opengrok/docker:latest
-    command: /usr/local/tomcat/bin/catalina.sh run
     volumes:
       - '/data/aospapp/src:/opengrok/src:ro'
       - '/data/aospapp/data:/opengrok/data'
